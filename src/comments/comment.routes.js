@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { savePost, getPosts, getPostById, deletePost, updatePost } from "./post.controller.js";
-import { validarCursoYCategoria, validarExistenciaPost } from "../middlewares/validar-posts.js";
+import { saveComment, getComments, searchComment, updateComment, deleteComment } from "./comment.controller.js";
+import { validarPostExistente, validarComentarioExistente } from "../middlewares/validar-comments.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 
 const router = Router();
@@ -9,46 +9,45 @@ const router = Router();
 router.post(
     "/",
     [
-        check("title", "The title is required").not().isEmpty(),
-        check("course", "Course is required").not().isEmpty(),
-        check("category", "The category is required").not().isEmpty(),
+        check("postId", "The ID for the publication is required").isMongoId(),
         check("content", "Content is required").not().isEmpty(),
-        validarCursoYCategoria,
+        validarPostExistente,
         validarCampos
     ],
-    savePost
+    saveComment
 )
 
-router.get("/", getPosts)
+router.get("/", getComments)
 
 router.get(
     "/find/:id",
     [
         check("id", "Not a valid ID").isMongoId(),
-        validarExistenciaPost,
+        validarComentarioExistente,
         validarCampos
     ],
-    getPostById
+    searchComment
 )
 
 router.put(
     "/:id",
     [
         check("id", "Not a valid ID").isMongoId(),
-        validarExistenciaPost,
+        validarComentarioExistente,
         validarCampos
     ],
-    updatePost
+    updateComment
 )
+
 
 router.delete(
     "/:id",
     [
         check("id", "Not a valid ID").isMongoId(),
-        validarExistenciaPost,
+        validarComentarioExistente,
         validarCampos
     ],
-    deletePost
+    deleteComment
 )
 
 export default router;
