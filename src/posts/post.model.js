@@ -11,17 +11,11 @@ const PostSchema = Schema({
     },
     course: {
         type: String,
-        ref: 'Courses',
         required: true
     },
     content: {
         type: String,
         required: [true, "The content is required"]
-    },
-    category: {
-        type: Schema.Types.ObjectId,
-        ref: 'Category',
-        required: true
     },
     comments: [{
         type: Schema.Types.ObjectId,
