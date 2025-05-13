@@ -5,7 +5,6 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import { dbConnection } from "./mongo.js";
-import { createAdmin } from '../src/users/user.controller.js';
 import limiter from '../src/middlewares/validar-cant-peticiones.js'
 import authRoutes from '../src/auth/auth.routes.js'
 import userRoutes from "../src/users/user.routes.js"
@@ -42,7 +41,6 @@ export const initServer = async () => {
         middlewares(app);
         conectarDB();
         routes(app);
-        await createAdmin();
         app.listen(port);
         console.log(`Server running on port: ${port}`);
     } catch (err) {
