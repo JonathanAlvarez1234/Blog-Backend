@@ -9,7 +9,7 @@ export const validarPostExistente = async (req, res, next) => {
         if (!post || !post.status) {
             return res.status(400).json({
                 success: false,
-                message: "Publicación no válida"
+                message: "Invalid post"
             });
         }
 
@@ -17,7 +17,7 @@ export const validarPostExistente = async (req, res, next) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "Error al validar la publicación",
+            message: "Error validating the publication",
             error: error.message
         });
     }
@@ -31,7 +31,7 @@ export const validarComentarioExistente = async (req, res, next) => {
         if (!comment || !comment.status) {
             return res.status(404).json({
                 success: false,
-                message: "Comentario no encontrado"
+                message: "Comment not found"
             });
         }
 
@@ -39,7 +39,7 @@ export const validarComentarioExistente = async (req, res, next) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "Error al buscar el comentario",
+            message: "Error searching for comment",
             error: error.message
         });
     }
