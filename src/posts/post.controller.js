@@ -2,9 +2,9 @@ import Post from "./post.model.js";
 
 export const savePost = async (req, res) => {
     try {
-        const { title, content, course, category, description } = req.body;
+        const { title, content, course, description } = req.body;
 
-        const newPost = new Post({ title, content, course, category, description });
+        const newPost = new Post({ title, content, course, description });
         await newPost.save();
 
         res.status(201).json({
@@ -28,7 +28,6 @@ export const getPosts = async (req, res) => {
         const [posts, total] = await Promise.all([
             Post.find({ status: true })
                 .populate("course", "name")
-                .populate("category", "name")
                 .skip(Number(desde))
                 .limit(Number(limite)),
             Post.countDocuments({ status: true })
@@ -49,7 +48,6 @@ export const getPostById = async (req, res) => {
         const { id } = req.params;
         const post = await Post.findById(id)
             .populate("course", "name")
-            .populate("category", "name");
 
         if (!post || !post.status) {
             return res.status(404).json({
@@ -100,7 +98,6 @@ export const updatePost = async (req, res) => {
         }
 
         if (course) post.course = course;
-        if (category) post.category = category;
         Object.assign(post, data);
 
         await post.save();

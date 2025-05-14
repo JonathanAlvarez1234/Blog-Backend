@@ -1,15 +1,13 @@
-import Post from "./post.model.js";
+import Post from "../posts/post.model.js";
 import Course from "../courses/course.model.js";
-import Category from "../categories/category.model.js";
 
-export const validarCursoYCategoria = async (req, res, next) => {
-    const { course, category } = req.body;
+export const validarCurso = async (req, res, next) => {
+    const { course } = req.body;
 
     try {
         const curso = await Course.findById(course);
-        const categoria = await Category.findById(category);
 
-        if (!curso || !categoria) {
+        if (!curso) {
             return res.status(400).json({
                 success: false,
                 message: "Curso o categoría inválida"
@@ -17,11 +15,11 @@ export const validarCursoYCategoria = async (req, res, next) => {
         }
 
         next();
-        
+
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "Error validando curso o categoría",
+            message: "Error validando curso",
             error: error.message
         });
     }

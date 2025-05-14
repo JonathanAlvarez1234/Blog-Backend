@@ -1,0 +1,29 @@
+[{
+  "_id": {
+    "$oid": "68251b05ae1209552d3c1918"
+  },
+  "title": "Tarea",
+  "description": "Hola",
+  "course": {
+    "$oid": "68251a43f1f8ff57d3bb2db8"
+  },
+  "content": "Hay tarea, morros",
+  "comments": [
+    {
+      "$oid": "6825222acf9e1b34c6a5198f"
+    },
+    {
+      "$oid": "682523520ed76918cf6a99b5"
+    }
+  ],
+  "status": true,
+  "date": {
+    "$date": "2025-05-14T22:36:53.513Z"
+  },
+  "createdAt": {
+    "$date": "2025-05-14T22:36:53.515Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-14T23:12:18.239Z"
+  }
+}]

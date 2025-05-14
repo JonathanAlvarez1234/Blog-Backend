@@ -6,7 +6,9 @@ import helmet from "helmet";
 import morgan from "morgan";
 import { dbConnection } from "./mongo.js";
 import limiter from '../src/middlewares/validar-cant-peticiones.js'
-import postRoutes from "../src/posts/post.routes.js"
+import postRoutes from "../src/posts/post.routes.js";
+import commentRoutes from "../src/comments/comment.routes.js";
+import courseRoutes from "../src/courses/course.routes.js"
 
 const middlewares = (app) => {
     app.use(express.urlencoded({extended: false}));
@@ -18,7 +20,9 @@ const middlewares = (app) => {
 }
 
 const routes = (app) =>{
-        app.use("/blogSystem/v1/users", postRoutes);
+        app.use("/blogSystem/v1/posts", postRoutes);
+        app.use("/blogSystem/v1/comments", commentRoutes);
+        app.use("/blogSystem/v1/courses", courseRoutes);
 }
 
 const conectarDB = async () => {
@@ -27,13 +31,13 @@ const conectarDB = async () => {
         console.log("Connection to the database successful");
     }catch(error){
         console.error('Error connecting to the database', error);
-        process.exit(1);
+        process.exit();
     }
 }
 
 export const initServer = async () => {
     const app = express();
-    const port = process.env.PORT || 3001;
+    const port = process.env.PORT || 3003;
 
     try {
         middlewares(app);

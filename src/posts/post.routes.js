@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import { savePost, getPosts, getPostById, deletePost, updatePost } from "./post.controller.js";
-import { validarCursoYCategoria, validarExistenciaPost } from "../middlewares/validar-posts.js";
+import { validarCurso, validarExistenciaPost } from "../middlewares/validar-posts.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 
 const router = Router();
@@ -9,11 +9,7 @@ const router = Router();
 router.post(
     "/",
     [
-        check("title", "The title is required").not().isEmpty(),
-        check("course", "Course is required").not().isEmpty(),
-        check("category", "The category is required").not().isEmpty(),
-        check("content", "Content is required").not().isEmpty(),
-        validarCursoYCategoria,
+        validarCurso,
         validarCampos
     ],
     savePost

@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "68251e069a9644d0230aafd1"
+  },
+  "visitorName": "Crosas",
+  "content": "Valla profe",
+  "whichPost": {
+    "$oid": "68251b05ae1209552d3c1918"
+  },
+  "status": true,
+  "date": {
+    "$date": "2025-05-14T22:49:42.381Z"
+  },
+  "createdAt": {
+    "$date": "2025-05-14T22:49:42.383Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-14T22:49:42.383Z"
+  }
+}]

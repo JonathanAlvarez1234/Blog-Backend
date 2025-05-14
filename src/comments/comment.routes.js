@@ -9,8 +9,6 @@ const router = Router();
 router.post(
     "/",
     [
-        check("postId", "The ID for the publication is required").isMongoId(),
-        check("content", "Content is required").not().isEmpty(),
         validarPostExistente,
         validarCampos
     ],

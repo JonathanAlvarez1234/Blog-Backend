@@ -2,11 +2,11 @@ import Comment from "../comments/comment.model.js";
 import Post from "../posts/post.model.js";
 
 export const validarPostExistente = async (req, res, next) => {
-    const { whichPost } = req.body;
+    const { title } = req.body;
 
     try {
-        const post = await Post.findById(whichPost);
-        if (!post || !post.status) {
+        const post = await Post.findOne({title});
+        if (!post) {
             return res.status(400).json({
                 success: false,
                 message: "Invalid post"
