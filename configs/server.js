@@ -37,7 +37,7 @@ const conectarDB = async () => {
 
 export const initServer = async () => {
     const app = express();
-    const port = process.env.PORT || 3003;
+    const port = process.env.PORT || 3001;
 
     try {
         middlewares(app);

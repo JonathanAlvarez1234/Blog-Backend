@@ -7,7 +7,6 @@ const PostSchema = Schema({
     },
     description: {
         type: String,
-        required: true
     },
     course: {
         type: Schema.Types.ObjectId,

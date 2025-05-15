@@ -25,9 +25,9 @@ const createCoursesD = async (name, description, status) => {
     }
 }
 
-createCoursesD("Taller III", "Este apartado donde se hacen publicaci...", true);
-createCoursesD("Tecnologia III", "Este apartado donde se hacen publicaci...", true);
-createCoursesD("Practica Supervisada", "Este apartado donde se hacen publicaci...", true);
+createCoursesD("Taller III", "Active course", true);
+createCoursesD("Tecnologia III", "Active course", true);
+createCoursesD("Practica Supervisada", "Active course", true);
 
 export const saveCourse = async (req, res) => {
     try {

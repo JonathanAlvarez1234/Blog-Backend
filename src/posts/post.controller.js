@@ -7,7 +7,7 @@ export const savePost = async (req, res) => {
         const newPost = new Post({ title, content, course, description });
         await newPost.save();
 
-        res.status(201).json({
+        res.status(200).json({
             success: true,
             message: "Post created",
             post: newPost

@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "5ca1b4d0-ac97-4026-bf44-77bad188248d",
+		"name": "Blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44520325"
+	},
+	"item": [
+		{
+			"name": "AGREGAR",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"Actividades Nuevas\",\r\n    \"description\":\"\",\r\n    \"course\":\"68254751b85bb22a20fe28f9\",\r\n    \"content\":\"Hay tarea, namas eso\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/blogSystem/v1/posts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"blogSystem",
+						"v1",
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VER",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"Actividades Nuevas\",\r\n    \"description\":\"\",\r\n    \"course\":\"68254751b85bb22a20fe28f9\",\r\n    \"content\":\"Hay tarea, namas eso\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/blogSystem/v1/posts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"blogSystem",
+						"v1",
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AGREGAR C",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\":\"Muy bien\",\r\n    \"title\":\"Actividades Nuevas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/blogSystem/v1/comments/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"blogSystem",
+						"v1",
+						"comments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/blogSystem/v1/comments/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"blogSystem",
+						"v1",
+						"comments",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
