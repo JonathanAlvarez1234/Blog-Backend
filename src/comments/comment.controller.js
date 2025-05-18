@@ -3,22 +3,28 @@ import Post from "../posts/post.model.js";
 
 export const saveComment = async (req, res) => {
     try {
-        const { visitorName, content, title } = req.body;
+        const { visitorName, content, whichPost } = req.body;
 
-        const post = await Post.findOne({title})
+        const post = await Post.findById(whichPost);
+        if (!post || !post.status) {
+            return res.status(404).json({
+                success: false,
+                message: "Post not found"
+            });
+        }
 
-        const newComment = new Comment({ visitorName, content, whichPost: post._id });
+        const newComment = new Comment({ visitorName, content, whichPost });
         await newComment.save();
 
-        await Post.findByIdAndUpdate(post._id, {
+        await Post.findByIdAndUpdate(whichPost, {
             $push: {
                 comments: newComment._id
             }
-        })
+        });
 
         res.status(200).json({
             success: true,
-            message: "Comment save",
+            message: "Comment saved",
             comment: newComment
         });
     } catch (error) {

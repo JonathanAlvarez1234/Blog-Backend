@@ -2,22 +2,22 @@ import Comment from "../comments/comment.model.js";
 import Post from "../posts/post.model.js";
 
 export const validarPostExistente = async (req, res, next) => {
-    const { title } = req.body;
+    const { whichPost } = req.body;
 
     try {
-        const post = await Post.findOne({title});
-        if (!post) {
-            return res.status(400).json({
-                success: false,
-                message: "Invalid post"
-            });
-        }
+        const post = await Post.findById(whichPost);
+        if (!whichPost) {
+    return res.status(400).json({
+        success: false,
+        message: "El ID del post es obligatorio"
+    });
+}
 
         next();
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "Error validating the publication",
+            message: "Error validating the post",
             error: error.message
         });
     }

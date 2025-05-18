@@ -11,7 +11,7 @@ import commentRoutes from "../src/comments/comment.routes.js";
 import courseRoutes from "../src/courses/course.routes.js"
 
 const middlewares = (app) => {
-    app.use(express.urlencoded({extended: false}));
+    app.use(express.urlencoded({ extended: false }));
     app.use(cors());
     app.use(express.json());
     app.use(helmet());
@@ -19,17 +19,17 @@ const middlewares = (app) => {
     app.use(limiter);
 }
 
-const routes = (app) =>{
-        app.use("/blogSystem/v1/posts", postRoutes);
-        app.use("/blogSystem/v1/comments", commentRoutes);
-        app.use("/blogSystem/v1/courses", courseRoutes);
+const routes = (app) => {
+    app.use("/blogSystem/posts", postRoutes);
+    app.use("/blogSystem/comments", commentRoutes);
+    app.use("/blogSystem/courses", courseRoutes);
 }
 
 const conectarDB = async () => {
-    try{
+    try {
         await dbConnection();
         console.log("Connection to the database successful");
-    }catch(error){
+    } catch (error) {
         console.error('Error connecting to the database', error);
         process.exit();
     }
@@ -41,7 +41,7 @@ export const initServer = async () => {
 
     try {
         middlewares(app);
-        conectarDB();
+        await conectarDB();
         routes(app);
         app.listen(port);
         console.log(`Server running on port: ${port}`);
