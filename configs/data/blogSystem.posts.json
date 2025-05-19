@@ -1,29 +1,88 @@
 [{
   "_id": {
-    "$oid": "68251b05ae1209552d3c1918"
+    "$oid": "682acb7612b4d09c49f6b362"
   },
-  "title": "Tarea",
-  "description": "Hola",
+  "title": "Nuevas actividades",
+  "description": "Una investigación",
   "course": {
-    "$oid": "68251a43f1f8ff57d3bb2db8"
+    "$oid": "68254751b85bb22a20fe28f9"
   },
-  "content": "Hay tarea, morros",
-  "comments": [
-    {
-      "$oid": "6825222acf9e1b34c6a5198f"
-    },
-    {
-      "$oid": "682523520ed76918cf6a99b5"
-    }
-  ],
+  "content": "Las apis",
+  "comments": [],
   "status": true,
   "date": {
-    "$date": "2025-05-14T22:36:53.513Z"
+    "$date": "2025-05-19T06:11:02.162Z"
   },
   "createdAt": {
-    "$date": "2025-05-14T22:36:53.515Z"
+    "$date": "2025-05-19T06:11:02.166Z"
   },
   "updatedAt": {
-    "$date": "2025-05-14T23:12:18.239Z"
+    "$date": "2025-05-19T06:11:02.166Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "682ad422b33166bf8fb7d0ef"
+  },
+  "title": "Nuevas actividades",
+  "description": "Una investigación",
+  "course": {
+    "$oid": "68254751b85bb22a20fe28f5"
+  },
+  "content": "Las apis",
+  "comments": [],
+  "status": true,
+  "date": {
+    "$date": "2025-05-19T06:48:02.777Z"
+  },
+  "createdAt": {
+    "$date": "2025-05-19T06:48:02.781Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-19T06:48:02.781Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "682ad424b33166bf8fb7d0f2"
+  },
+  "title": "Nuevas actividades",
+  "description": "Una investigación",
+  "course": {
+    "$oid": "68254751b85bb22a20fe28f5"
+  },
+  "content": "Las apis",
+  "comments": [],
+  "status": true,
+  "date": {
+    "$date": "2025-05-19T06:48:04.782Z"
+  },
+  "createdAt": {
+    "$date": "2025-05-19T06:48:04.783Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-19T06:48:04.783Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "682ad437b33166bf8fb7d0f5"
+  },
+  "title": "Nuevas actividades",
+  "description": "Una investigación",
+  "course": {
+    "$oid": "68254751b85bb22a20fe28f7"
+  },
+  "content": "Las apis",
+  "comments": [],
+  "status": true,
+  "date": {
+    "$date": "2025-05-19T06:48:23.140Z"
+  },
+  "createdAt": {
+    "$date": "2025-05-19T06:48:23.140Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-19T06:48:23.140Z"
   }
 }]
