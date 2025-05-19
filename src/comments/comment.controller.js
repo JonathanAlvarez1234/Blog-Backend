@@ -1,36 +1,21 @@
 import Comment from "../comments/comment.model.js";
-import Post from "../posts/post.model.js";
 
 export const saveComment = async (req, res) => {
     try {
-        const { visitorName, content, whichPost } = req.body;
+        const { visitorName, content, postId } = req.body;
 
-        const post = await Post.findById(whichPost);
-        if (!post || !post.status) {
-            return res.status(404).json({
-                success: false,
-                message: "Post not found"
-            });
-        }
-
-        const newComment = new Comment({ visitorName, content, whichPost });
+        const newComment = new Comment({ visitorName, content, postId });
         await newComment.save();
-
-        await Post.findByIdAndUpdate(whichPost, {
-            $push: {
-                comments: newComment._id
-            }
-        });
 
         res.status(200).json({
             success: true,
-            message: "Comment saved",
+            message: "Comentario guardado",
             comment: newComment
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: "Error saving comment",
+            message: "Error al guardar el comentario",
             error: error.message
         });
     }
@@ -42,7 +27,7 @@ export const getComments = async (req, res) => {
 
         const [comments, total] = await Promise.all([
             Comment.find({ status: true })
-                .populate("whichPost", "title")
+                .populate("postId", "title")
                 .skip(Number(desde))
                 .limit(Number(limite)),
             Comment.countDocuments({ status: true })
@@ -56,7 +41,7 @@ export const getComments = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: "Error getting comments",
+            message: "Error al obtener comentarios",
             error: error.message
         });
     }
@@ -66,7 +51,7 @@ export const searchComment = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const comment = await Comment.findById(id).populate("whichPost", "title");
+        const comment = await Comment.findById(id).populate("postId", "title");
 
         res.status(200).json({
             success: true,
@@ -75,7 +60,7 @@ export const searchComment = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: "Error searching for comment",
+            message: "Error al buscar el comentario",
             error: error.message
         });
     }
@@ -94,13 +79,13 @@ export const updateComment = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            message: "Updated comment",
+            message: "Comentario actualizado",
             comment: updated
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: "Error updating comment",
+            message: "Error al actualizar el comentario",
             error: error.message
         });
     }
@@ -114,12 +99,32 @@ export const deleteComment = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            message: "Comment successfully deleted"
+            message: "Comentario eliminado correctamente"
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: "Error deleting comment",
+            message: "Error al eliminar el comentario",
+            error: error.message
+        });
+    }
+};
+
+export const getCommentsByPost = async (req, res) => {
+    try {
+        const { postId } = req.params;
+
+        const comments = await Comment.find({ postId, status: true }).sort({ createdAt: -1 });
+
+        res.status(200).json({
+            success: true,
+            total: comments.length,
+            comments
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Error al obtener comentarios del post",
             error: error.message
         });
     }

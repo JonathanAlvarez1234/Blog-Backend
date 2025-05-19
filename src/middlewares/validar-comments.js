@@ -1,37 +1,21 @@
-import Comment from "../comments/comment.model.js";
 import Post from "../posts/post.model.js";
 
 export const validarPostExistente = async (req, res, next) => {
-    const { whichPost } = req.body;
+    const { postId } = req.body;
 
-    try {
-        const post = await Post.findById(whichPost);
-        if (!whichPost) {
-    return res.status(400).json({
-        success: false,
-        message: "El ID del post es obligatorio"
-    });
-}
-
-        next();
-    } catch (error) {
-        return res.status(500).json({
+    if (!postId) {
+        return res.status(400).json({
             success: false,
-            message: "Error validating the post",
-            error: error.message
+            message: "El ID del post es obligatorio"
         });
     }
-};
-
-export const validarComentarioExistente = async (req, res, next) => {
-    const { id } = req.params;
 
     try {
-        const comment = await Comment.findById(id);
-        if (!comment || !comment.status) {
+        const post = await Post.findById(postId);
+        if (!post || !post.status) {
             return res.status(404).json({
                 success: false,
-                message: "Comment not found"
+                message: "Post no encontrado"
             });
         }
 
@@ -39,7 +23,7 @@ export const validarComentarioExistente = async (req, res, next) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "Error searching for comment",
+            message: "Error al validar el post",
             error: error.message
         });
     }

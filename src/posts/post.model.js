@@ -34,10 +34,4 @@ const PostSchema = Schema({
     versionKey: false
 });
 
-PostSchema.methods.toJSON = function () {
-    const { _id, ...post } = this.toObject();
-    post.uid = _id;
-    return post;
-};
-
 export default model("Post", PostSchema);
