@@ -69,13 +69,24 @@ export const searchComment = async (req, res) => {
 export const updateComment = async (req, res) => {
     try {
         const { id } = req.params;
-        const { content } = req.body;
+        const { content, visitorName } = req.body;
+
+        const updateFields = {};
+        if (content !== undefined) updateFields.content = content;
+        if (visitorName !== undefined) updateFields.visitorName = visitorName;
 
         const updated = await Comment.findByIdAndUpdate(
             id,
-            { content },
+            updateFields,
             { new: true }
         );
+
+        if (!updated) {
+            return res.status(404).json({
+                success: false,
+                message: "Comentario no encontrado"
+            });
+        }
 
         res.status(200).json({
             success: true,
